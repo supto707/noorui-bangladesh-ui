@@ -2,6 +2,8 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { ComponentShowcase } from "@/components/ComponentShowcase";
 import { PrayerTimeCard } from "@/components/PrayerTimeCard";
 import { QiblaCompass } from "@/components/QiblaCompass";
+import { HijriCalendar } from "@/components/HijriCalendar";
+import { RamadanCountdown } from "@/components/RamadanCountdown";
 import { Moon, Package, Palette, Globe, Zap, Shield, ChevronRight, Star, Github } from "lucide-react";
 
 const Index = () => {
@@ -21,6 +23,7 @@ const Index = () => {
             <a href="#themes" className="text-muted-foreground hover:text-foreground transition-colors">Themes</a>
             <a href="#components" className="text-muted-foreground hover:text-foreground transition-colors">Components</a>
             <a href="#islamic" className="text-muted-foreground hover:text-foreground transition-colors">Islamic</a>
+            <a href="#package" className="text-muted-foreground hover:text-foreground transition-colors">Package</a>
           </div>
           <button className="rui-btn-outline rui-btn-sm">
             <Github className="w-4 h-4" /> GitHub
@@ -113,9 +116,73 @@ const Index = () => {
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-2">Islamic Components</h2>
           <p className="text-muted-foreground mb-8">Purpose-built for prayer apps and Islamic web projects</p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <PrayerTimeCard />
             <QiblaCompass />
+            <HijriCalendar />
+            <RamadanCountdown />
+          </div>
+        </div>
+      </section>
+
+      {/* Package Structure */}
+      <section id="package" className="py-20 bg-background">
+        <div className="container max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-2">npm Package Structure</h2>
+          <p className="text-muted-foreground mb-8">Tree-shakable, framework-agnostic distribution</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="rui-card">
+              <div className="rui-card-body">
+                <h3 className="font-bold text-lg mb-3">Installation</h3>
+                <div className="rounded-lg bg-muted p-4 font-mono text-sm mb-4">
+                  <p className="text-muted-foreground">$ npm install rangpurui</p>
+                </div>
+                <div className="rounded-lg bg-muted p-4 font-mono text-xs leading-relaxed">
+                  <p className="text-muted-foreground">{"// tailwind.config.js"}</p>
+                  <p>{"module.exports = {"}</p>
+                  <p className="pl-4">{"plugins: ["}</p>
+                  <p className="pl-8 text-primary">{"require('rangpurui')({ "}</p>
+                  <p className="pl-12">{"themes: ['islamic-green', 'ramadan'],"}</p>
+                  <p className="pl-12">{"prefix: 'rui-',"}</p>
+                  <p className="pl-8 text-primary">{" }),"}</p>
+                  <p className="pl-4">{"],"}</p>
+                  <p>{"}"}</p>
+                </div>
+              </div>
+            </div>
+            <div className="rui-card">
+              <div className="rui-card-body">
+                <h3 className="font-bold text-lg mb-3">Bundle Size</h3>
+                <div className="space-y-3">
+                  {[
+                    { label: "Full library", size: "~42KB", pct: 84 },
+                    { label: "CSS only", size: "~35KB", pct: 70 },
+                    { label: "1 theme + 5 components", size: "~8KB", pct: 16 },
+                  ].map((b) => (
+                    <div key={b.label}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span>{b.label}</span>
+                        <span className="text-primary font-mono font-bold">{b.size}</span>
+                      </div>
+                      <div className="rui-progress"><div className="rui-progress-bar" style={{ width: `${b.pct}%` }} /></div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-xs text-muted-foreground">
+                  All sizes gzipped. Fully tree-shakable — import only what you need.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 grid md:grid-cols-4 gap-4">
+            {["React", "Vue", "Next.js", "Vanilla JS"].map((fw) => (
+              <div key={fw} className="rui-card">
+                <div className="rui-card-body text-center py-4">
+                  <p className="font-bold text-primary">{fw}</p>
+                  <p className="text-xs text-muted-foreground">Supported</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
