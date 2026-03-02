@@ -1,105 +1,502 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   RangpurUI Design System
+   12 Islamic-Themed Color Palettes
+   All colors in HSL
+   ============================================ */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Typography */
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-arabic: 'Amiri', serif;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Spacing & Radius */
+    --radius: 0.75rem;
+    --radius-sm: 0.375rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
+    --transition-slow: 0.3s ease-out;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.08), 0 2px 4px -2px hsl(0 0% 0% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.03);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.05);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.25);
+
+    /* Default: Light theme */
+    --background: 60 20% 98%;
+    --foreground: 150 10% 12%;
+
+    --card: 60 15% 97%;
+    --card-foreground: 150 10% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 150 10% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 152 55% 28%;
+    --primary-foreground: 60 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 42 80% 55%;
+    --secondary-foreground: 30 50% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 150 10% 93%;
+    --muted-foreground: 150 8% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 42 80% 55%;
+    --accent-foreground: 30 50% 12%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 150 10% 88%;
+    --input: 150 10% 88%;
+    --ring: 152 55% 28%;
 
-    --radius: 0.5rem;
+    /* Extended palette */
+    --success: 152 55% 40%;
+    --success-foreground: 60 20% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 30 50% 12%;
+    --info: 200 80% 45%;
+    --info-foreground: 0 0% 100%;
 
-    --sidebar-background: 0 0% 98%;
+    /* Islamic decorative */
+    --gold: 42 80% 55%;
+    --emerald: 152 55% 28%;
+    --teal: 174 60% 30%;
+    --pattern-opacity: 0.04;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradient tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(152 55% 28%), hsl(174 60% 30%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 80% 55%), hsl(35 85% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(152 55% 15%), hsl(174 60% 20%), hsl(152 55% 28%));
+    --gradient-card: linear-gradient(180deg, hsl(var(--card)), hsl(var(--muted) / 0.5));
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar */
+    --sidebar-background: 150 15% 96%;
+    --sidebar-foreground: 150 10% 25%;
+    --sidebar-primary: 152 55% 28%;
+    --sidebar-primary-foreground: 60 20% 98%;
+    --sidebar-accent: 150 10% 92%;
+    --sidebar-accent-foreground: 150 10% 25%;
+    --sidebar-border: 150 10% 88%;
+    --sidebar-ring: 152 55% 28%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  /* ---- DARK THEME ---- */
+  .dark, [data-theme="dark"] {
+    --background: 160 15% 8%;
+    --foreground: 60 10% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 160 12% 11%;
+    --card-foreground: 60 10% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 160 12% 11%;
+    --popover-foreground: 60 10% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 152 55% 45%;
+    --primary-foreground: 160 15% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 42 70% 50%;
+    --secondary-foreground: 160 15% 8%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 160 10% 16%;
+    --muted-foreground: 160 8% 55%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 42 70% 50%;
+    --accent-foreground: 160 15% 8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 160 10% 18%;
+    --input: 160 10% 18%;
+    --ring: 152 55% 45%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(160 15% 5%), hsl(152 55% 12%), hsl(174 60% 15%));
+    --pattern-opacity: 0.06;
   }
-}
 
-@layer base {
+  /* ---- ISLAMIC GREEN ---- */
+  [data-theme="islamic-green"] {
+    --background: 140 20% 97%;
+    --foreground: 140 30% 10%;
+    --primary: 140 60% 25%;
+    --primary-foreground: 140 20% 97%;
+    --secondary: 45 85% 52%;
+    --secondary-foreground: 40 50% 10%;
+    --accent: 45 85% 52%;
+    --accent-foreground: 40 50% 10%;
+    --card: 140 15% 95%;
+    --card-foreground: 140 30% 10%;
+    --muted: 140 12% 91%;
+    --muted-foreground: 140 10% 42%;
+    --border: 140 12% 86%;
+    --ring: 140 60% 25%;
+    --gradient-hero: linear-gradient(135deg, hsl(140 60% 15%), hsl(140 60% 25%), hsl(160 50% 30%));
+  }
+
+  /* ---- RAMADAN ---- */
+  [data-theme="ramadan"] {
+    --background: 270 15% 97%;
+    --foreground: 270 20% 12%;
+    --primary: 270 45% 35%;
+    --primary-foreground: 270 15% 97%;
+    --secondary: 42 90% 55%;
+    --secondary-foreground: 40 50% 12%;
+    --accent: 42 90% 55%;
+    --accent-foreground: 40 50% 12%;
+    --card: 270 12% 95%;
+    --card-foreground: 270 20% 12%;
+    --muted: 270 10% 92%;
+    --muted-foreground: 270 8% 45%;
+    --border: 270 10% 87%;
+    --ring: 270 45% 35%;
+    --gradient-hero: linear-gradient(135deg, hsl(270 45% 18%), hsl(270 45% 30%), hsl(280 40% 35%));
+  }
+
+  /* ---- HIJRI ---- */
+  [data-theme="hijri"] {
+    --background: 200 15% 97%;
+    --foreground: 200 20% 10%;
+    --primary: 200 65% 35%;
+    --primary-foreground: 200 15% 97%;
+    --secondary: 170 50% 40%;
+    --secondary-foreground: 170 30% 10%;
+    --accent: 42 75% 55%;
+    --accent-foreground: 40 50% 12%;
+    --card: 200 12% 95%;
+    --card-foreground: 200 20% 10%;
+    --muted: 200 10% 92%;
+    --muted-foreground: 200 8% 45%;
+    --border: 200 10% 87%;
+    --ring: 200 65% 35%;
+    --gradient-hero: linear-gradient(135deg, hsl(200 65% 18%), hsl(200 65% 30%), hsl(210 55% 35%));
+  }
+
+  /* ---- DHAKA NIGHT ---- */
+  [data-theme="dhaka-night"] {
+    --background: 230 20% 10%;
+    --foreground: 60 10% 90%;
+    --primary: 180 70% 45%;
+    --primary-foreground: 230 20% 10%;
+    --secondary: 340 70% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 50 85% 55%;
+    --accent-foreground: 230 20% 10%;
+    --card: 230 18% 13%;
+    --card-foreground: 60 10% 90%;
+    --muted: 230 15% 17%;
+    --muted-foreground: 230 10% 50%;
+    --border: 230 15% 20%;
+    --ring: 180 70% 45%;
+    --gradient-hero: linear-gradient(135deg, hsl(230 20% 6%), hsl(230 20% 10%), hsl(240 18% 15%));
+  }
+
+  /* ---- RANGPUR ---- */
+  [data-theme="rangpur"] {
+    --background: 30 25% 97%;
+    --foreground: 25 30% 12%;
+    --primary: 25 75% 42%;
+    --primary-foreground: 30 25% 97%;
+    --secondary: 140 45% 35%;
+    --secondary-foreground: 140 20% 97%;
+    --accent: 45 80% 52%;
+    --accent-foreground: 40 50% 12%;
+    --card: 30 20% 95%;
+    --card-foreground: 25 30% 12%;
+    --muted: 30 15% 91%;
+    --muted-foreground: 30 10% 45%;
+    --border: 30 15% 86%;
+    --ring: 25 75% 42%;
+    --gradient-hero: linear-gradient(135deg, hsl(25 75% 25%), hsl(25 75% 38%), hsl(35 70% 45%));
+  }
+
+  /* ---- SYLHET ---- */
+  [data-theme="sylhet"] {
+    --background: 120 18% 97%;
+    --foreground: 120 20% 10%;
+    --primary: 120 45% 30%;
+    --primary-foreground: 120 18% 97%;
+    --secondary: 180 45% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 80 55% 45%;
+    --accent-foreground: 80 30% 10%;
+    --card: 120 14% 95%;
+    --card-foreground: 120 20% 10%;
+    --muted: 120 10% 91%;
+    --muted-foreground: 120 8% 45%;
+    --border: 120 10% 86%;
+    --ring: 120 45% 30%;
+    --gradient-hero: linear-gradient(135deg, hsl(120 45% 18%), hsl(120 45% 28%), hsl(130 40% 35%));
+  }
+
+  /* ---- CHITTAGONG ---- */
+  [data-theme="chittagong"] {
+    --background: 15 20% 97%;
+    --foreground: 15 25% 10%;
+    --primary: 15 65% 40%;
+    --primary-foreground: 15 20% 97%;
+    --secondary: 200 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 42 75% 52%;
+    --accent-foreground: 40 50% 12%;
+    --card: 15 15% 95%;
+    --card-foreground: 15 25% 10%;
+    --muted: 15 12% 91%;
+    --muted-foreground: 15 8% 45%;
+    --border: 15 12% 86%;
+    --ring: 15 65% 40%;
+    --gradient-hero: linear-gradient(135deg, hsl(15 65% 22%), hsl(15 65% 35%), hsl(20 60% 42%));
+  }
+
+  /* ---- COX'S BAZAR ---- */
+  [data-theme="coxsbazar"] {
+    --background: 195 25% 97%;
+    --foreground: 195 25% 10%;
+    --primary: 195 70% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 35 80% 52%;
+    --secondary-foreground: 30 50% 10%;
+    --accent: 170 55% 40%;
+    --accent-foreground: 170 30% 10%;
+    --card: 195 18% 95%;
+    --card-foreground: 195 25% 10%;
+    --muted: 195 12% 91%;
+    --muted-foreground: 195 10% 45%;
+    --border: 195 12% 86%;
+    --ring: 195 70% 38%;
+    --gradient-hero: linear-gradient(135deg, hsl(195 70% 22%), hsl(195 70% 35%), hsl(185 60% 40%));
+  }
+
+  /* ---- SUNDARBAN ---- */
+  [data-theme="sundarban"] {
+    --background: 90 18% 96%;
+    --foreground: 90 25% 10%;
+    --primary: 90 40% 28%;
+    --primary-foreground: 90 18% 96%;
+    --secondary: 35 60% 42%;
+    --secondary-foreground: 35 25% 97%;
+    --accent: 55 65% 48%;
+    --accent-foreground: 55 30% 10%;
+    --card: 90 14% 94%;
+    --card-foreground: 90 25% 10%;
+    --muted: 90 10% 90%;
+    --muted-foreground: 90 8% 42%;
+    --border: 90 10% 85%;
+    --ring: 90 40% 28%;
+    --gradient-hero: linear-gradient(135deg, hsl(90 40% 15%), hsl(90 40% 25%), hsl(100 35% 30%));
+  }
+
+  /* ---- CUPCAKE ---- */
+  [data-theme="cupcake"] {
+    --background: 340 20% 97%;
+    --foreground: 340 15% 15%;
+    --primary: 340 55% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 50% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 45 80% 60%;
+    --accent-foreground: 40 50% 12%;
+    --card: 340 15% 95%;
+    --card-foreground: 340 15% 15%;
+    --muted: 340 10% 92%;
+    --muted-foreground: 340 8% 45%;
+    --border: 340 10% 88%;
+    --ring: 340 55% 55%;
+    --gradient-hero: linear-gradient(135deg, hsl(340 55% 40%), hsl(340 55% 52%), hsl(350 50% 58%));
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* ============================================
+   RangpurUI Semantic Component Classes
+   ============================================ */
+
+@layer components {
+  /* --- Buttons --- */
+  .rui-btn {
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out rounded-lg
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none active:scale-[0.97]
+           px-5 py-2.5 text-sm gap-2;
+  }
+  .rui-btn-primary {
+    @apply rui-btn bg-primary text-primary-foreground hover:brightness-110;
+    box-shadow: var(--shadow-md);
+  }
+  .rui-btn-primary:hover { box-shadow: var(--shadow-lg); }
+  .rui-btn-secondary {
+    @apply rui-btn bg-secondary text-secondary-foreground hover:brightness-105;
+  }
+  .rui-btn-ghost {
+    @apply rui-btn bg-transparent text-foreground hover:bg-muted;
+  }
+  .rui-btn-outline {
+    @apply rui-btn bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground;
+  }
+  .rui-btn-xs { @apply px-2.5 py-1 text-xs; }
+  .rui-btn-sm { @apply px-3.5 py-1.5 text-xs; }
+  .rui-btn-lg { @apply px-7 py-3.5 text-base; }
+  .rui-btn-xl { @apply px-9 py-4 text-lg; }
+
+  /* --- Cards --- */
+  .rui-card {
+    @apply rounded-xl border border-border bg-card text-card-foreground overflow-hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+  .rui-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  .rui-card-body { @apply p-6; }
+  .rui-card-compact .rui-card-body { @apply p-4; }
+
+  /* --- Alerts --- */
+  .rui-alert {
+    @apply flex items-start gap-3 rounded-lg p-4 text-sm border;
+  }
+  .rui-alert-info { @apply bg-info/10 border-info/20 text-info; }
+  .rui-alert-success { @apply bg-success/10 border-success/20 text-success; }
+  .rui-alert-warning { @apply bg-warning/10 border-warning/20 text-warning; }
+  .rui-alert-error { @apply bg-destructive/10 border-destructive/20 text-destructive; }
+
+  /* --- Badges --- */
+  .rui-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .rui-badge-primary { @apply bg-primary text-primary-foreground; }
+  .rui-badge-secondary { @apply bg-secondary text-secondary-foreground; }
+  .rui-badge-accent { @apply bg-accent text-accent-foreground; }
+  .rui-badge-outline { @apply bg-transparent border border-border text-foreground; }
+
+  /* --- Inputs --- */
+  .rui-input {
+    @apply flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm
+           ring-offset-background placeholder:text-muted-foreground
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1
+           disabled:cursor-not-allowed disabled:opacity-50;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .rui-textarea {
+    @apply rui-input min-h-[80px] py-2;
+  }
+
+  /* --- Tables --- */
+  .rui-table { @apply w-full text-sm; }
+  .rui-table th { @apply text-left font-semibold text-muted-foreground px-4 py-3 border-b border-border; }
+  .rui-table td { @apply px-4 py-3 border-b border-border; }
+  .rui-table-zebra tr:nth-child(even) td { @apply bg-muted/50; }
+
+  /* --- Progress --- */
+  .rui-progress {
+    @apply w-full h-2.5 rounded-full bg-muted overflow-hidden;
+  }
+  .rui-progress-bar {
+    @apply h-full rounded-full bg-primary transition-all duration-500 ease-out;
+  }
+
+  /* --- Divider --- */
+  .rui-divider {
+    @apply w-full border-t border-border my-6;
+  }
+
+  /* --- Steps --- */
+  .rui-steps { @apply flex items-center gap-2; }
+  .rui-step {
+    @apply flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold border-2 border-border text-muted-foreground;
+    transition: all var(--transition-base);
+  }
+  .rui-step-active {
+    @apply border-primary bg-primary text-primary-foreground;
+  }
+  .rui-step-line { @apply flex-1 h-0.5 bg-border; }
+  .rui-step-line-active { @apply bg-primary; }
+
+  /* --- Hero --- */
+  .rui-hero {
+    @apply relative overflow-hidden;
+    background: var(--gradient-hero);
+  }
+
+  /* --- Islamic pattern overlay --- */
+  .rui-pattern {
+    @apply absolute inset-0 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill-opacity='.03'/%3E%3Ccircle cx='30' cy='30' r='8' fill-opacity='.04'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* --- Spinner --- */
+  .rui-spinner {
+    @apply inline-block animate-spin rounded-full border-2 border-muted border-t-primary;
+  }
+  .rui-spinner-sm { @apply w-4 h-4; }
+  .rui-spinner-md { @apply w-6 h-6; }
+  .rui-spinner-lg { @apply w-8 h-8; }
+
+  /* RTL Support */
+  [dir="rtl"] .rui-alert { @apply flex-row-reverse; }
+  [dir="rtl"] .rui-btn { @apply flex-row-reverse; }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out both;
+  }
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px hsl(152 55% 28% / 0.3); }
+  50% { box-shadow: 0 0 20px hsl(152 55% 28% / 0.5); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
