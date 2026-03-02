@@ -1,4 +1,5 @@
-import { Star, Check, AlertCircle, Info, AlertTriangle, ChevronRight, Bell } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Star, Check, AlertCircle, Info, AlertTriangle, ChevronRight, ChevronDown, X, Menu, MoreVertical, Bell } from "lucide-react";
 
 export const ComponentShowcase = () => {
   return (
@@ -33,6 +34,21 @@ export const ComponentShowcase = () => {
           <span className="rui-badge bg-destructive text-destructive-foreground">Urgent</span>
         </div>
       </Section>
+
+      {/* Modal / Dialog */}
+      <ModalDemo />
+
+      {/* Tabs */}
+      <TabsDemo />
+
+      {/* Accordion */}
+      <AccordionDemo />
+
+      {/* Dropdown Menu */}
+      <DropdownDemo />
+
+      {/* Drawer */}
+      <DrawerDemo />
 
       {/* Cards */}
       <Section title="Cards" desc="Content containers with hover effects">
@@ -197,6 +213,204 @@ export const ComponentShowcase = () => {
         </div>
       </Section>
     </div>
+  );
+};
+
+/* ============================================
+   Interactive Component Demos
+   ============================================ */
+
+const ModalDemo = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Section title="Modal / Dialog" desc="Centered overlay dialogs with backdrop">
+      <button className="rui-btn-primary" onClick={() => setOpen(true)}>Open Modal</button>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center" onClick={() => setOpen(false)}>
+          <div className="fixed inset-0 bg-foreground/40 backdrop-blur-sm animate-fade-in-up" style={{ animationDuration: "0.15s" }} />
+          <div
+            className="relative z-10 rui-card w-full max-w-md mx-4 animate-fade-in-up"
+            style={{ animationDuration: "0.2s" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="rui-card-body">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-lg">Modal Title</h3>
+                <button className="rui-btn-ghost p-1 rounded-full" onClick={() => setOpen(false)}>
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-muted-foreground text-sm mb-6">
+                This is a RangpurUI modal component. It supports backdrop click to close, 
+                keyboard navigation, and smooth animations. All themed with CSS custom properties.
+              </p>
+              <div className="flex gap-2 justify-end">
+                <button className="rui-btn-ghost" onClick={() => setOpen(false)}>Cancel</button>
+                <button className="rui-btn-primary" onClick={() => setOpen(false)}>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </Section>
+  );
+};
+
+const TabsDemo = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ["Overview", "Features", "Installation"];
+  const contents = [
+    "RangpurUI is a lightweight Tailwind CSS component library designed for Bangladeshi developers and Islamic web applications.",
+    "12 themes, 25+ components, RTL support, dark mode, tree-shakable, framework-agnostic, and fully accessible.",
+    "Install via npm: npm install rangpurui — then add it to your tailwind.config.js plugins array.",
+  ];
+  return (
+    <Section title="Tabs" desc="Tabbed content navigation">
+      <div className="max-w-xl">
+        <div className="flex border-b border-border">
+          {tabs.map((tab, i) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(i)}
+              className={`px-4 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                activeTab === i
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+        <div className="rui-card rounded-t-none border-t-0">
+          <div className="rui-card-body">
+            <p className="text-sm text-muted-foreground">{contents[activeTab]}</p>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+};
+
+const AccordionDemo = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const items = [
+    { q: "What is RangpurUI?", a: "A lightweight Tailwind CSS component library with Islamic-themed palettes, built for Bangladeshi developers." },
+    { q: "Is it framework-agnostic?", a: "Yes! RangpurUI works with React, Vue, Vanilla JS, Next.js, Vite, and any other framework that supports Tailwind CSS." },
+    { q: "Does it support RTL?", a: "Fully! All components use CSS logical properties and support dir=\"rtl\" for Arabic and Urdu prayer apps." },
+  ];
+  return (
+    <Section title="Accordion / Collapse" desc="Expandable content sections">
+      <div className="max-w-xl space-y-2">
+        {items.map((item, i) => (
+          <div key={i} className="rui-card">
+            <button
+              className="w-full flex items-center justify-between px-5 py-3.5 text-left font-medium text-sm"
+              onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            >
+              {item.q}
+              <ChevronDown
+                className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${
+                  openIndex === i ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-200 ease-out ${
+                openIndex === i ? "max-h-40" : "max-h-0"
+              }`}
+            >
+              <div className="px-5 pb-4 text-sm text-muted-foreground">{item.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+const DropdownDemo = () => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <Section title="Dropdown Menu" desc="Contextual action menus">
+      <div className="relative inline-block" ref={ref}>
+        <button className="rui-btn-outline" onClick={() => setOpen(!open)}>
+          <MoreVertical className="w-4 h-4" /> Options
+        </button>
+        {open && (
+          <div className="absolute top-full left-0 mt-1 w-48 rui-card py-1 z-20 animate-fade-in-up" style={{ animationDuration: "0.15s" }}>
+            {["Edit Profile", "Settings", "Notifications", "Sign Out"].map((item, i) => (
+              <button
+                key={item}
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors ${
+                  i === 3 ? "text-destructive" : "text-foreground"
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </Section>
+  );
+};
+
+const DrawerDemo = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <Section title="Drawer / Sidebar" desc="Slide-out panel for mobile navigation">
+      <button className="rui-btn-outline" onClick={() => setOpen(true)}>
+        <Menu className="w-4 h-4" /> Open Drawer
+      </button>
+      {open && (
+        <div className="fixed inset-0 z-50" onClick={() => setOpen(false)}>
+          <div className="fixed inset-0 bg-foreground/40 backdrop-blur-sm" />
+          <div
+            className="fixed top-0 left-0 h-full w-72 bg-card border-r border-border shadow-xl z-10"
+            style={{ animation: "slide-in-left 0.3s ease-out" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+                    <span className="text-primary-foreground font-bold text-xs">R</span>
+                  </div>
+                  <span className="font-bold">RangpurUI</span>
+                </div>
+                <button className="rui-btn-ghost p-1 rounded-full" onClick={() => setOpen(false)}>
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <nav className="space-y-1">
+                {["Home", "Components", "Themes", "Documentation", "Islamic Tools"].map((item, i) => (
+                  <a
+                    key={item}
+                    className={`block px-3 py-2.5 rounded-lg text-sm transition-colors cursor-pointer ${
+                      i === 0 ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    {item}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
+        </div>
+      )}
+    </Section>
   );
 };
 
