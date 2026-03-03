@@ -1,0 +1,10 @@
+# Exclude everything by default
+/*
+
+# Allow publishable files
+!dist/
+!src/
+!package.json
+!README.md
+!rollup.config.js
+!LICENSE

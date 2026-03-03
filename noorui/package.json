@@ -1,0 +1,61 @@
+{
+    "name": "@supto_noorui/noorui-bangladesh-ui",
+    "version": "1.0.1",
+    "description": "NoorUI – Lightweight Tailwind CSS UI framework for Bangladeshi and Islamic web apps. 12 themes, 25+ components, RTL-ready, accessible.",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "type": "module",
+    "files": [
+        "dist",
+        "src",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "rollup -c rollup.config.js",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "tailwindcss",
+        "tailwind",
+        "plugin",
+        "ui",
+        "components",
+        "islamic",
+        "bangladesh",
+        "noorui",
+        "rtl",
+        "dark-mode",
+        "themes",
+        "prayer",
+        "css",
+        "design-system"
+    ],
+    "author": "NoorUI",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/supto707/noorui-bangladesh-ui.git"
+    },
+    "homepage": "https://github.com/supto707/noorui-bangladesh-ui#readme",
+    "bugs": {
+        "url": "https://github.com/supto707/noorui-bangladesh-ui/issues"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "peerDependencies": {
+        "tailwindcss": ">=3.0.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^28.0.0",
+        "@rollup/plugin-node-resolve": "^16.0.0",
+        "rollup": "^4.0.0"
+    }
+}

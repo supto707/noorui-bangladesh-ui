@@ -1,4 +1,5 @@
 import { Moon, Sun, Sunrise, Sunset, CloudMoon } from "lucide-react";
+import { motion } from "framer-motion";
 
 const prayers = [
   { name: "Fajr", time: "5:15 AM", icon: Sunrise, active: false },
@@ -10,36 +11,33 @@ const prayers = [
 
 export const PrayerTimeCard = () => {
   return (
-    <div className="rui-card max-w-sm overflow-hidden">
-      <div className="rui-hero px-6 py-8 text-primary-foreground relative">
-        <div className="rui-pattern" />
+    <div className="pt-card w-full max-w-sm">
+      <div className="pt-card-header rui-pattern">
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-2">
             <div>
-              <p className="text-sm opacity-80">Today's Prayer Times</p>
-              <h3 className="text-xl font-bold">Dhaka, Bangladesh</h3>
+              <p className="pt-card-title">Today's Prayer Times</p>
+              <h3 className="pt-card-location">Dhaka, Bangladesh</h3>
             </div>
-            <CloudMoon className="w-10 h-10 opacity-60 animate-float" />
+            <CloudMoon className="w-10 h-10 opacity-40" />
           </div>
-          <p className="text-xs opacity-70 font-arabic">بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ</p>
+          <p className="pt-card-bismillah">بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ</p>
         </div>
       </div>
-      <div className="rui-card-body p-0">
+      <div className="bg-base-200">
         {prayers.map((p) => {
           const Icon = p.icon;
           return (
             <div
               key={p.name}
-              className={`flex items-center justify-between px-6 py-3 border-b border-border last:border-0 transition-colors ${
-                p.active ? "bg-primary/5" : "hover:bg-muted/50"
-              }`}
+              className={`pt-card-row ${p.active ? "pt-card-active" : ""}`}
             >
               <div className="flex items-center gap-3">
-                <Icon className={`w-4 h-4 ${p.active ? "text-primary" : "text-muted-foreground"}`} />
-                <span className={`font-medium ${p.active ? "text-primary" : ""}`}>{p.name}</span>
-                {p.active && <span className="rui-badge-primary text-[10px] px-2 py-0">Next</span>}
+                <Icon className={`w-4 h-4 ${p.active ? "text-primary" : "opacity-40"}`} />
+                <span className="pt-card-name">{p.name}</span>
+                {p.active && <span className="nui-badge-primary nui-badge-sm ml-2">Next</span>}
               </div>
-              <span className={`text-sm font-mono ${p.active ? "text-primary font-semibold" : "text-muted-foreground"}`}>
+              <span className="pt-card-time">
                 {p.time}
               </span>
             </div>

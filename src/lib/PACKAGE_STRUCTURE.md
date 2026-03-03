@@ -1,11 +1,11 @@
-# RangpurUI — npm Package Structure
+# NoorUI — npm Package Structure
 
-This document describes the npm package structure for distributing RangpurUI as a standalone Tailwind CSS plugin.
+This document describes the npm package structure for distributing NoorUI as a standalone Tailwind CSS plugin.
 
 ## Package Structure
 
 ```
-rangpurui/
+noorui/
 ├── package.json           # npm metadata
 ├── README.md              # Documentation
 ├── LICENSE                # MIT License
@@ -73,7 +73,7 @@ rangpurui/
 
 ```json
 {
-  "name": "rangpurui",
+  "name": "noorui",
   "version": "1.0.0",
   "description": "A lightweight Tailwind CSS UI framework with Islamic-themed palettes for Bangladeshi developers",
   "main": "dist/index.js",
@@ -104,11 +104,11 @@ rangpurui/
     "bangladesh",
     "rtl",
     "daisyui-alternative",
-    "rangpurui",
+    "noorui",
     "prayer-app",
     "hijri"
   ],
-  "author": "RangpurUI Contributors",
+  "author": "NoorUI Contributors",
   "license": "MIT",
   "peerDependencies": {
     "tailwindcss": ">=3.0.0"
@@ -131,16 +131,16 @@ rangpurui/
 ## Installation & Usage
 
 ```bash
-npm install rangpurui
+npm install noorui
 ```
 
 ```js
 // tailwind.config.js
 module.exports = {
   plugins: [
-    require('rangpurui')({
+    require('noorui')({
       themes: ['light', 'dark', 'islamic-green', 'ramadan'],
-      prefix: 'rui-',
+      prefix: 'nui-',
       darkMode: 'class',
     }),
   ],
@@ -151,14 +151,14 @@ module.exports = {
 <!-- Set theme -->
 <html data-theme="islamic-green">
   <body>
-    <button class="rui-btn-primary rui-btn-lg">
+    <button class="nui-btn-primary nui-btn-lg">
       Bismillah — Get Started
     </button>
     
-    <div class="rui-card">
-      <div class="rui-card-body">
+    <div class="nui-card">
+      <div class="nui-card-body">
         <h2>Assalamu Alaikum</h2>
-        <p>Welcome to RangpurUI</p>
+        <p>Welcome to NoorUI</p>
       </div>
     </div>
   </body>
@@ -171,10 +171,10 @@ RangpurUI is fully tree-shakable. Import only what you need:
 
 ```js
 // Import specific themes
-import { islamicGreen, ramadan } from 'rangpurui/themes';
+import { islamicGreen, ramadan } from 'noorui/themes';
 
 // Import specific components  
-import { button, card } from 'rangpurui/components';
+import { button, card } from 'noorui/components';
 ```
 
 ## RTL Support

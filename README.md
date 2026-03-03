@@ -1,22 +1,17 @@
-# Welcome to your Lovable project
+# RangpurUI - Bangladesh's Delightful UI
 
-## Project info
+A lightweight, high-performance UI framework for modern web development, with a focus on Islamic and Bangladeshi cultural aesthetics.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
+- **Semantic Theming**: 12 custom themes.
+- **RTL Ready**: Built-in support for Arabic/Persian/Urdu.
+- **Accessible**: ARIA-compliant components.
+- **Lightweight**: Optimized for performance.
 
-## How can I edit this code?
+## Getting Started
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Local Development
+If you want to work locally, clone this repo and run:
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -24,7 +19,7 @@ Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/supto707/noorui-bangladesh-ui.git
 
 # Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
@@ -60,14 +55,9 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+You can deploy this project to any static hosting service like Netlify, Vercel, or GitHub Pages.
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Run `npm run build` to create a production bundle.
+2. Upload the `dist` folder to your hosting provider.

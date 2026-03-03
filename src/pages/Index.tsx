@@ -1,224 +1,251 @@
+import { Link, useNavigate } from "react-router-dom";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
-import { ComponentShowcase } from "@/components/ComponentShowcase";
-import { PrayerTimeCard } from "@/components/PrayerTimeCard";
-import { QiblaCompass } from "@/components/QiblaCompass";
-import { HijriCalendar } from "@/components/HijriCalendar";
-import { RamadanCountdown } from "@/components/RamadanCountdown";
-import { Moon, Package, Palette, Globe, Zap, Shield, ChevronRight, Star, Github } from "lucide-react";
+
+import { Moon, Package, Palette, Globe, Zap, Shield, ChevronRight, Star, Github, Terminal, Copy, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText("npm install noorui");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground scroll-smooth">
       {/* Navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
         <div className="container max-w-6xl mx-auto flex items-center justify-between py-3 px-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">R</span>
+              <span className="text-primary-content font-bold text-sm">N</span>
             </div>
-            <span className="font-display font-bold text-lg">RangpurUI</span>
-            <span className="rui-badge-primary text-[10px]">v1.0</span>
+            <span className="font-display font-bold text-lg">NoorUI</span>
+            <span className="nui-badge-primary nui-badge-sm ml-1">v1.0</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#themes" className="text-muted-foreground hover:text-foreground transition-colors">Themes</a>
-            <a href="#components" className="text-muted-foreground hover:text-foreground transition-colors">Components</a>
-            <a href="#islamic" className="text-muted-foreground hover:text-foreground transition-colors">Islamic</a>
-            <a href="#package" className="text-muted-foreground hover:text-foreground transition-colors">Package</a>
+            <Link to="/documentation" className="text-muted-foreground hover:text-foreground transition-colors font-semibold">Documentation</Link>
+            <Link to="/components" className="text-muted-foreground hover:text-foreground transition-colors font-semibold">Components</Link>
+            <button onClick={() => scrollTo('themes')} className="text-muted-foreground hover:text-foreground transition-colors font-semibold">Themes</button>
           </div>
-          <button className="rui-btn-outline rui-btn-sm">
-            <Github className="w-4 h-4" /> GitHub
-          </button>
+          <a href="https://github.com" target="_blank" rel="noreferrer" className="nui-btn nui-btn-outline nui-btn-primary nui-btn-sm font-bold rounded-xl border-2 hover:scale-105 transition-transform flex items-center">
+            <Github className="w-4 h-4 mr-2" /> GitHub
+          </a>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="rui-hero py-24 md:py-32 relative">
-        <div className="rui-pattern" />
-        <div className="container max-w-6xl mx-auto px-4 relative z-10">
-          <div className="max-w-3xl animate-fade-in-up">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="rui-badge bg-primary-foreground/20 text-primary-foreground">Open Source</span>
-              <span className="rui-badge bg-primary-foreground/20 text-primary-foreground">{"<"}50KB</span>
+      <section className="nui-hero py-10 md:py-20 relative overflow-hidden bg-[#2D5A4C] text-white min-h-[85vh] flex items-center">
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 20a10 10 0 1 1 0 20 10 10 0 0 1 0-20z\' fill=\'%23ffffff\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
+            backgroundSize: '40px 40px'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2D5A4C] from-5% via-transparent to-transparent opacity-80" />
+
+        <div className="container max-w-6xl mx-auto px-4 relative z-10 text-center md:text-left md:mt-4 mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl"
+          >
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 mb-6">
+              <span className="bg-white/10 text-white px-3 py-1 rounded-full text-[11px] font-bold border border-white/5 tracking-widest">Open Source</span>
+              <span className="bg-white/10 text-white px-3 py-1 rounded-full text-[11px] font-bold border border-white/5 tracking-widest">{"<"}50KB</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-primary-foreground leading-tight mb-4">
+            <h1 className="text-4xl md:text-7xl font-black text-white leading-tight mb-6">
               Beautiful UI for<br />
-              <span className="opacity-80">Bangladeshi Developers</span>
+              <span className="text-white/90">Bangladeshi Developers</span>
             </h1>
-            <p className="text-lg text-primary-foreground/75 max-w-xl mb-8 leading-relaxed">
-              A lightweight Tailwind CSS component library with 12 Islamic-themed palettes, 
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed font-medium mx-auto md:mx-0">
+              A lightweight Tailwind CSS component library with 12 Islamic-themed palettes,
               RTL support, and 25+ semantic components. Framework-agnostic, tree-shakable, production-ready.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <button className="rui-btn bg-primary-foreground text-primary font-bold hover:brightness-95 rui-btn-lg">
-                Get Started <ChevronRight className="w-4 h-4" />
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-16 relative z-20">
+              <button
+                onClick={() => scrollTo('components')}
+                className="bg-white text-[#2D5A4C] font-extrabold px-6 py-3 rounded-xl shadow-lg hover:bg-white/90 transition-colors flex items-center text-[15px]"
+              >
+                Get Started <ChevronRight className="w-4 h-4 ml-1 stroke-[3]" />
               </button>
-              <button className="rui-btn border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rui-btn-lg">
+              <button
+                onClick={() => scrollTo('themes')}
+                className="bg-transparent border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors text-[15px]"
+              >
                 View Components
               </button>
             </div>
-          </div>
 
-          {/* Install snippet */}
-          <div className="mt-12 max-w-md animate-fade-in-up delay-200">
-            <div className="rounded-xl bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 p-4 font-mono text-sm text-primary-foreground">
-              <span className="text-primary-foreground/50">$</span> npm install rangpurui
+            {/* Terminal install block */}
+            <div className="max-w-md mx-auto md:mx-0 relative z-20 mt-8">
+              <div
+                className="bg-[#214338]/80 border border-white/5 rounded-2xl px-6 py-4 flex items-center justify-between shadow-2xl relative group cursor-pointer hover:bg-[#214338] transition-colors"
+                onClick={handleCopy}
+              >
+                <code className="text-[#A4C4B9] font-mono text-sm tracking-wide bg-transparent flex items-center">
+                  $ <span className="text-white ml-2">npm install noorui</span>
+                </code>
+
+                <div className="text-white/40 group-hover:text-white/80 transition-colors bg-white/5 rounded-md p-1.5 ml-4 flex items-center justify-center min-w-[32px] min-h-[32px]">
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-background">
         <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-2">Why RangpurUI?</h2>
-          <p className="text-center text-muted-foreground mb-12">Built with love for the Bangladeshi and Islamic dev community</p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-black mb-3">Why NoorUI?</h2>
+            <p className="text-muted-foreground text-lg">Modern, lightweight, and culturally inclusive design system</p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Package, title: "< 50KB Gzipped", desc: "Lightweight and tree-shakable. Only ship what you use." },
-              { icon: Palette, title: "12 Themes", desc: "From Islamic Green to Cox's Bazar — palettes inspired by Bangladesh." },
-              { icon: Globe, title: "RTL Ready", desc: "Full dir='rtl' support with CSS logical properties for Arabic/Urdu apps." },
-              { icon: Zap, title: "Framework Agnostic", desc: "Works with React, Vue, Vanilla JS, Next.js, Vite — any stack." },
-              { icon: Moon, title: "Dark/Light/Auto", desc: "Built-in dark mode with smooth transitions and auto-detection." },
-              { icon: Shield, title: "Accessible", desc: "ARIA roles, focus-visible, keyboard nav — inclusive by default." },
-            ].map((f) => (
-              <div key={f.title} className="rui-card">
-                <div className="rui-card-body">
-                  <f.icon className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="font-bold text-lg mb-1">{f.title}</h3>
-                  <p className="text-muted-foreground text-sm">{f.desc}</p>
+              { icon: Package, title: "< 50KB Gzipped", desc: "Minimal footprint for maximum performance." },
+              { icon: Palette, title: "12 Themes", desc: "Locally inspired palettes from Rangpur to Sylhet." },
+              { icon: Globe, title: "RTL Ready", desc: "Optimized for Arabic and Urdu script applications." },
+              { icon: Zap, title: "Fast Delivery", desc: "No runtime overhead, just optimized CSS classes." },
+              { icon: Moon, title: "Dark First", desc: "Crafted specifically for night-mode and battery saving." },
+              { icon: Shield, title: "Accessible", desc: "WAI-ARIA compliant components for everyone." },
+            ].map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="nui-card hover:-translate-y-2 transition-transform duration-300"
+              >
+                <div className="nui-card-body">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary mb-4">
+                    <f.icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="font-extrabold text-xl mb-2">{f.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{f.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Theme Switcher */}
-      <section id="themes" className="py-20 bg-muted/30">
-        <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-2">12 Color Themes</h2>
-          <p className="text-muted-foreground mb-8">Click a theme to see the entire page transform instantly</p>
-          <ThemeSwitcher />
-        </div>
-      </section>
-
-      {/* Components */}
-      <section id="components" className="py-20 bg-background">
-        <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-2">Component Showcase</h2>
-          <p className="text-muted-foreground mb-12">25+ semantic components, all themed with CSS custom properties</p>
-          <ComponentShowcase />
-        </div>
-      </section>
-
-      {/* Islamic Components */}
-      <section id="islamic" className="py-20 bg-muted/30">
-        <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-2">Islamic Components</h2>
-          <p className="text-muted-foreground mb-8">Purpose-built for prayer apps and Islamic web projects</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <PrayerTimeCard />
-            <QiblaCompass />
-            <HijriCalendar />
-            <RamadanCountdown />
+      {/* Themes */}
+      <section id="themes" className="py-24 bg-base-200 border-y border-border">
+        <div className="container max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-black mb-3">12 Color Themes</h2>
+          <p className="text-muted-foreground mb-12 text-lg">Dynamic palette switching with data-theme support</p>
+          <div className="flex justify-center bg-background/50 p-8 rounded-3xl border border-border/50 backdrop-blur-sm">
+            <ThemeSwitcher />
           </div>
         </div>
       </section>
 
-      {/* Package Structure */}
-      <section id="package" className="py-20 bg-background">
+      {/* Showcase */}
+      <section id="components" className="py-24 bg-background">
         <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-2">npm Package Structure</h2>
-          <p className="text-muted-foreground mb-8">Tree-shakable, framework-agnostic distribution</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="rui-card">
-              <div className="rui-card-body">
-                <h3 className="font-bold text-lg mb-3">Installation</h3>
-                <div className="rounded-lg bg-muted p-4 font-mono text-sm mb-4">
-                  <p className="text-muted-foreground">$ npm install rangpurui</p>
-                </div>
-                <div className="rounded-lg bg-muted p-4 font-mono text-xs leading-relaxed">
-                  <p className="text-muted-foreground">{"// tailwind.config.js"}</p>
-                  <p>{"module.exports = {"}</p>
-                  <p className="pl-4">{"plugins: ["}</p>
-                  <p className="pl-8 text-primary">{"require('rangpurui')({ "}</p>
-                  <p className="pl-12">{"themes: ['islamic-green', 'ramadan'],"}</p>
-                  <p className="pl-12">{"prefix: 'rui-',"}</p>
-                  <p className="pl-8 text-primary">{" }),"}</p>
-                  <p className="pl-4">{"],"}</p>
-                  <p>{"}"}</p>
-                </div>
-              </div>
-            </div>
-            <div className="rui-card">
-              <div className="rui-card-body">
-                <h3 className="font-bold text-lg mb-3">Bundle Size</h3>
-                <div className="space-y-3">
-                  {[
-                    { label: "Full library", size: "~42KB", pct: 84 },
-                    { label: "CSS only", size: "~35KB", pct: 70 },
-                    { label: "1 theme + 5 components", size: "~8KB", pct: 16 },
-                  ].map((b) => (
-                    <div key={b.label}>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span>{b.label}</span>
-                        <span className="text-primary font-mono font-bold">{b.size}</span>
-                      </div>
-                      <div className="rui-progress"><div className="rui-progress-bar" style={{ width: `${b.pct}%` }} /></div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 text-xs text-muted-foreground">
-                  All sizes gzipped. Fully tree-shakable — import only what you need.
-                </div>
-              </div>
-            </div>
+          <div className="mb-16">
+            <h2 className="text-4xl font-black mb-3">Universal Components</h2>
+            <p className="text-muted-foreground text-lg">A rich collection of fundamental UI blocks</p>
           </div>
-          <div className="mt-6 grid md:grid-cols-4 gap-4">
-            {["React", "Vue", "Next.js", "Vanilla JS"].map((fw) => (
-              <div key={fw} className="rui-card">
-                <div className="rui-card-body text-center py-4">
-                  <p className="font-bold text-primary">{fw}</p>
-                  <p className="text-xs text-muted-foreground">Supported</p>
+
+          {/* Inline preview grid — no sidebar */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { title: 'Button', count: '10+', desc: 'Variants & states' },
+              { title: 'Card', count: '5', desc: 'Layouts & overlays' },
+              { title: 'Input', count: '6', desc: 'Fields & controls' },
+              { title: 'Modal', count: '3', desc: 'Dialogs & sheets' },
+            ].map((c) => (
+              <div key={c.title} className="nui-card border-border/40 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                <div className="nui-card-body p-6">
+                  <div className="flex items-baseline justify-between mb-2">
+                    <h3 className="font-black text-lg">{c.title}</h3>
+                    <span className="text-xs font-bold text-primary">{c.count}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{c.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="rui-hero py-20 relative">
-        <div className="rui-pattern" />
-        <div className="container max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Ready to build something beautiful?
-          </h2>
-          <p className="text-primary-foreground/70 mb-8 max-w-lg mx-auto">
-            Start using RangpurUI today — open source, forever free, built for the ummah.
-          </p>
-          <button className="rui-btn bg-primary-foreground text-primary font-bold rui-btn-lg">
-            Get Started — It's Free
-          </button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-10 bg-card border-t border-border">
-        <div className="container max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xs">R</span>
-            </div>
-            <span className="font-display font-semibold">RangpurUI</span>
+          <div className="mt-10 text-center">
+            <Link to="/components" className="nui-btn nui-btn-outline rounded-xl font-bold px-8 group border-2">
+              See All Components <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Made with ❤️ from Rangpur, Bangladesh
-          </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <a className="hover:text-foreground transition-colors cursor-pointer">Docs</a>
-            <a className="hover:text-foreground transition-colors cursor-pointer">GitHub</a>
-            <a className="hover:text-foreground transition-colors cursor-pointer">npm</a>
+        </div>
+      </section>
+
+
+      <section className="py-24 text-center bg-background">
+        <div className="nui-hero py-20 relative overflow-hidden text-center rounded-[3rem] container max-w-5xl mx-auto bg-primary text-primary-content">
+          <div className="rui-pattern absolute inset-0 opacity-20" />
+          <div className="container px-4 relative z-10">
+            <h2 className="text-4xl font-black text-white mb-6">Ready to build something beautiful?</h2>
+            <p className="text-white/80 text-lg mb-10">Start building your next masterpiece with NoorUI today.</p>
+            <button onClick={() => scrollTo('components')} className="nui-btn bg-white text-primary nui-btn-xl px-12 rounded-2xl font-black shadow-xl hover:scale-105 transition-transform">
+              Get Started Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-16 bg-card border-t border-border">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex flex-col items-center md:items-start">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                  <span className="text-primary-foreground font-black text-lg">N</span>
+                </div>
+                <span className="font-display font-black text-2xl">NoorUI</span>
+              </div>
+              <p className="text-muted-foreground max-w-xs text-center md:text-left">The delightful UI kit for modern web applications built for Bangladesh.</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-sm">
+              <div className="flex flex-col gap-4">
+                <h4 className="font-black uppercase tracking-widest text-xs opacity-40">Library</h4>
+                <Link to="/documentation" className="hover:text-primary transition-colors cursor-pointer font-bold">Documentation</Link>
+                <Link to="/components" className="hover:text-primary transition-colors cursor-pointer font-bold">Components</Link>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h4 className="font-black uppercase tracking-widest text-xs opacity-40">Community</h4>
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors cursor-pointer font-bold">GitHub</a>
+                <a href="https://npmjs.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors cursor-pointer font-bold">npm Registry</a>
+              </div>
+              <div className="hidden md:flex flex-col gap-4">
+                <h4 className="font-black uppercase tracking-widest text-xs opacity-40">Support</h4>
+                <a className="hover:text-primary transition-colors cursor-pointer font-bold">Contact</a>
+                <a className="hover:text-primary transition-colors cursor-pointer font-bold">Donate</a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-16 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-bold opacity-40 uppercase tracking-widest">
+            <p>© 2026 NoorUI Framework. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a>Privacy Policy</a>
+              <a>Terms of Service</a>
+            </div>
           </div>
         </div>
       </footer>

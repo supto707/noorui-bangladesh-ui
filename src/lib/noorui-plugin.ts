@@ -1,17 +1,17 @@
 /**
- * RangpurUI - PostCSS Plugin Structure
+ * NoorUI - PostCSS Plugin Structure
  * 
  * This file represents the npm package entry point for distribution.
- * In production, this would be published as the `rangpurui` npm package.
+ * In production, this would be published as the `noorui` npm package.
  * 
  * Usage:
  *   // tailwind.config.js
  *   module.exports = {
- *     plugins: [require('rangpurui')],
+ *     plugins: [require('noorui')],
  *   }
  * 
  * Or with options:
- *   plugins: [require('rangpurui')({ themes: ['islamic-green', 'ramadan'] })],
+ *   plugins: [require('noorui')({ themes: ['islamic-green', 'ramadan'] })],
  */
 
 // Theme definitions — each theme maps semantic tokens to HSL values
@@ -313,14 +313,14 @@ export const components = {
 } as const;
 
 // Plugin configuration type
-export interface RangpurUIConfig {
+export interface NoorUIConfig {
   themes?: (keyof typeof themes)[];
   prefix?: string;
   darkMode?: "class" | "media" | "auto";
 }
 
 /**
- * RangpurUI Tailwind CSS Plugin
+ * NoorUI Tailwind CSS Plugin
  * 
  * This is the main plugin entry point.
  * 
@@ -338,10 +338,10 @@ export interface RangpurUIConfig {
  * For now, this exports the theme and component definitions
  * that can be consumed by the Tailwind config.
  */
-export function createRangpurPlugin(config: RangpurUIConfig = {}) {
+export function createNoorPlugin(config: NoorUIConfig = {}) {
   const {
     themes: enabledThemes = Object.keys(themes) as (keyof typeof themes)[],
-    prefix = "rui-",
+    prefix = "nui-",
     darkMode = "class",
   } = config;
 
@@ -355,4 +355,4 @@ export function createRangpurPlugin(config: RangpurUIConfig = {}) {
   };
 }
 
-export default createRangpurPlugin;
+export default createNoorPlugin;
