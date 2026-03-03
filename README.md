@@ -20,27 +20,31 @@ npm install
 npm run dev
 ```
 
-## 🛠 Using NoorUI in Your Projects
+## 🛠 Using NoorUI in Your Projects (Tailwind v4)
 
-If you want to use the **NoorUI** framework in your own application:
+NoorUI is a modern CSS framework optimized for Tailwind v4.
 
 ### 1. Installation
 
 ```bash
-npm install @supto_noorui/noorui-bangladesh-ui
+npm install @supto_noorui/noorui-bangladesh-ui tailwindcss @tailwindcss/vite
 ```
 
-### 2. Configuration (Tailwind)
-
-Add NoorUI to your `tailwind.config.ts`:
+### 2. Configuration (vite.config.ts)
 
 ```typescript
-import noorui from "@supto_noorui/noorui-bangladesh-ui";
+import tailwindcss from "@tailwindcss/vite";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  plugins: [noorui],
+  plugins: [tailwindcss()],
 }
+```
+
+### 3. Register Plugin (CSS)
+
+```css
+@import "tailwindcss";
+@plugin "@supto_noorui/noorui-bangladesh-ui";
 ```
 
 ## ✨ Core Features

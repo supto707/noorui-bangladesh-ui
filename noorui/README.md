@@ -10,67 +10,48 @@ A lightweight, standalone, production-ready UI framework designed for Bangladesh
 - **12 Semantic Themes**: `islamic-green`, `ramadan`, `dhaka-night`, `rangpur`, `sylhet`, and more.
 - **High Performance**: PostCSS-based Tailwind plugin for maximum optimization.
 
-## 🚀 Step-by-Step Setup
+## 🚀 Modern Setup (Tailwind v4)
 
-### 1. Install the package
+NoorUI is optimized for Tailwind CSS v4 and Vite.
+
+### 1. Install
 
 ```bash
-npm install @supto_noorui/noorui-bangladesh-ui
+npm install @supto_noorui/noorui-bangladesh-ui tailwindcss @tailwindcss/vite
 ```
 
-### 2. Framework Configuration
+### 2. Configure Vite
 
-#### Vite (React)
+Add the Tailwind plugin to your `vite.config.ts`:
 
-Add to your `tailwind.config.ts` (or `.js`):
+```typescript
+import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 
-```javascript
-import noorui from "@supto_noorui/noorui-bangladesh-ui";
-
-export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+export default defineConfig({
   plugins: [
-    noorui({
-      themes: ["islamic-green", "ramadan", "dark"],
-      prefix: "nui-",
-    }),
+    tailwindcss(),
   ],
+})
+```
+
+### 3. Register Plugin in CSS
+
+In your main CSS file (e.g., `src/index.css`), import Tailwind and register NoorUI using the `@plugin` directive:
+
+```css
+@import "tailwindcss";
+
+@plugin "@supto_noorui/noorui-bangladesh-ui" {
+  themes: islamic-green, ramadan;
+  prefix: nui-;
 }
 ```
 
-#### Next.js (App Router)
-
-Update your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from "tailwindcss";
-import noorui from "@supto_noorui/noorui-bangladesh-ui";
-
-const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  plugins: [noorui],
-};
-export default config;
-```
-
-### 3. Start Using Components
-
-NoorUI provides a set of semantic classes that prefix with `nui-` (by default).
+## 🧩 Usage
 
 ```html
-<!-- Button -->
 <button class="nui-btn nui-btn-primary">Bismillah</button>
-
-<!-- Card -->
-<div class="nui-card">
-  <div class="nui-card-body">
-    <h3 class="font-bold text-lg">Assalamu Alaikum</h3>
-    <p>This is a standalone NoorUI card component.</p>
-  </div>
-</div>
 ```
 
 ## 🎨 Theming

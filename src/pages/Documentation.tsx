@@ -1,4 +1,4 @@
-import { Terminal, Github, Package as PackageIcon, Shield, Zap, Palette, Globe, ChevronLeft, Copy, Check, Info, Rocket, Layers, Code2, Cpu } from "lucide-react";
+import { Terminal, Github, Package as PackageIcon, Shield, Zap, Palette, Globe, ChevronLeft, Copy, Check, Info, Rocket, Layers, Code2, Cpu, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -51,10 +51,13 @@ const Documentation = () => {
                         </div>
                         <span className="font-display font-bold text-lg">NoorUI</span>
                     </Link>
-                    <div className="flex items-center gap-4">
-                        <Link to="/" className="text-sm font-semibold hover:text-primary flex items-center gap-1 transition-colors">
+                    <div className="flex items-center gap-3">
+                        <Link to="/" className="text-sm font-semibold hover:text-primary flex items-center gap-1 transition-colors mr-2">
                             <ChevronLeft className="w-4 h-4" /> Back
                         </Link>
+                        <a href="https://www.npmjs.com/package/@supto_noorui/noorui-bangladesh-ui" target="_blank" rel="noreferrer" className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#CB3837]/10 text-[#CB3837] text-xs font-bold border border-[#CB3837]/20 hover:bg-[#CB3837]/20 transition-all">
+                            <PackageIcon className="w-3.5 h-3.5" /> npm <ExternalLink className="w-3 h-3 opacity-50" />
+                        </a>
                         <a href="https://github.com/supto707/noorui-bangladesh-ui.git" target="_blank" rel="noreferrer" className="nui-btn nui-btn-outline nui-btn-primary nui-btn-sm font-bold rounded-xl border-2 hover:scale-105 transition-transform flex items-center">
                             <Github className="w-4 h-4 mr-2" /> GitHub
                         </a>
@@ -67,10 +70,10 @@ const Documentation = () => {
                 <div className="rui-pattern absolute inset-0 opacity-20" />
                 <div className="container max-w-6xl mx-auto px-4 relative z-10">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <span className="bg-white/10 text-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 mb-6 inline-block">Official Guide</span>
-                        <h1 className="text-4xl md:text-7xl font-black mb-4">Get Started</h1>
+                        <span className="bg-white/10 text-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 mb-6 inline-block">Official Documentation</span>
+                        <h1 className="text-4xl md:text-7xl font-black mb-4">Installation</h1>
                         <p className="text-primary-content/80 text-xl max-w-2xl font-medium leading-relaxed">
-                            Step-by-step instructions to integrate NoorUI into your favorite framework.
+                            Integrate NoorUI into your workflow with modern Tailwind v4 practices.
                         </p>
                     </motion.div>
                 </div>
@@ -116,50 +119,49 @@ const Documentation = () => {
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black">1</div>
-                                        <h2 className="text-2xl font-black">Install Package</h2>
+                                        <h2 className="text-2xl font-black">Install NoorUI & Tailwind v4</h2>
                                     </div>
-                                    <p className="text-muted-foreground">Add the core NoorUI package to your project dependencies.</p>
-                                    {renderCodeBlock("Terminal", "npm install @supto_noorui/noorui-bangladesh-ui")}
+                                    <p className="text-muted-foreground">Tailwind v4 is highly optimized for Vite. We'll install the core engine and the Vite plugin.</p>
+                                    {renderCodeBlock("Terminal", "npm install @supto_noorui/noorui-bangladesh-ui tailwindcss @tailwindcss/vite")}
                                 </div>
 
                                 {/* Configuration Step */}
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black">2</div>
-                                        <h2 className="text-2xl font-black">Configure Tailwind</h2>
+                                        <h2 className="text-2xl font-black">Configure Vite Plugin</h2>
                                     </div>
-                                    <p className="text-muted-foreground">Register NoorUI as a plugin in your Tailwind configuration file.</p>
-                                    {activeFramework === "vite" ? (
-                                        renderCodeBlock(
-                                            activeLang === "ts" ? "tailwind.config.ts" : "tailwind.config.js",
-                                            activeLang === "ts" ? `import noorui from "@supto_noorui/noorui-bangladesh-ui";\n\nexport default {\n  content: ["./src/**/*.{js,ts,jsx,tsx}"],\n  plugins: [\n    noorui({\n      themes: ["islamic-green", "ramadan", "dark"],\n      prefix: "nui-",\n    }),\n  ],\n};` : `const noorui = require("@supto_noorui/noorui-bangladesh-ui");\n\nmodule.exports = {\n  content: ["./src/**/*.{js,ts,jsx,tsx}"],\n  plugins: [\n    noorui({\n      themes: ["islamic-green", "ramadan", "dark"],\n      prefix: "nui-",\n    }),\n  ],\n};`,
-                                            activeLang === "ts" ? "ESM" : "CommonJS"
-                                        )
-                                    ) : activeFramework === "next" ? (
-                                        renderCodeBlock(
-                                            activeLang === "ts" ? "tailwind.config.ts" : "tailwind.config.js",
-                                            activeLang === "ts" ? `import type { Config } from "tailwindcss";\nimport noorui from "@supto_noorui/noorui-bangladesh-ui";\n\nconst config: Config = {\n  content: [\n    "./pages/**/*.{js,ts,jsx,tsx,mdx}",\n    "./components/**/*.{js,ts,jsx,tsx,mdx}",\n    "./app/**/*.{js,ts,jsx,tsx,mdx}",\n  ],\n  plugins: [noorui],\n};\nexport default config;` : `/** @type {import('tailwindcss').Config} */\nconst noorui = require("@supto_noorui/noorui-bangladesh-ui");\n\nmodule.exports = {\n  content: [\n    "./pages/**/*.{js,ts,jsx,tsx,mdx}",\n    "./components/**/*.{js,ts,jsx,tsx,mdx}",\n    "./app/**/*.{js,ts,jsx,tsx,mdx}",\n  ],\n  plugins: [noorui],\n};`
-                                        )
-                                    ) : (
-                                        <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900 rounded-2xl p-6 flex gap-4">
-                                            <Info className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                                            <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed font-medium">
-                                                For vanilla JS without Tailwind CLI, you can include our pre-compiled CSS or use the UMD version.
-                                            </p>
-                                        </div>
+                                    <p className="text-muted-foreground">In Tailwind v4, you no longer need a separate <code>tailwind.config.js</code>. Instead, simply add the plugin to your Vite config.</p>
+                                    {renderCodeBlock(
+                                        activeFramework === "vite" ? (activeLang === "ts" ? "vite.config.ts" : "vite.config.js") : (activeLang === "ts" ? "next.config.ts" : "next.config.js"),
+                                        activeFramework === "vite" ? `import { defineConfig } from 'vite'\nimport tailwindcss from '@tailwindcss/vite'\n\nexport default defineConfig({\n  plugins: [\n    tailwindcss(),\n  ],\n})` : `import tailwindcss from '@tailwindcss/vite'\n\n/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  // Your config\n}\n\n// Note: For Next.js v15+ ensure you use the CSS-first approach\nexport default nextConfig`,
+                                        activeLang === "ts" ? "ESM" : "CommonJS"
+                                    )}
+                                </div>
+
+                                {/* CSS Step */}
+                                <div className="space-y-6">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black">3</div>
+                                        <h2 className="text-2xl font-black">Import & Register Plugin</h2>
+                                    </div>
+                                    <p className="text-muted-foreground">Import Tailwind into your main CSS file and register NoorUI using the <code>@plugin</code> directive.</p>
+                                    {renderCodeBlock(
+                                        "src/index.css",
+                                        `@import "tailwindcss";\n\n@plugin "@supto_noorui/noorui-bangladesh-ui" {\n  themes: islamic-green, ramadan;\n  prefix: nui-;\n}`
                                     )}
                                 </div>
 
                                 {/* Usage Step */}
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black">3</div>
-                                        <h2 className="text-2xl font-black">Start Building</h2>
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-black">4</div>
+                                        <h2 className="text-2xl font-black">Bismillah!</h2>
                                     </div>
-                                    <p className="text-muted-foreground">Use semantic classes to style your components instantly.</p>
+                                    <p className="text-muted-foreground">You are ready. Start using NoorUI classes in your components.</p>
                                     {renderCodeBlock(
-                                        "HTML / JSX",
-                                        `<button className="nui-btn nui-btn-primary">\n  Bismillah — Get Started\n</button>\n\n<div className="nui-card">\n  <div className="nui-card-body">\n    <h2>Assalamu Alaikum</h2>\n    <p>Welcome to NoorUI</p>\n  </div>\n</div>`
+                                        "App.tsx / Page.tsx",
+                                        `<button className="nui-btn nui-btn-primary">\n  Assalamu Alaikum\n</button>\n\n<div className="nui-card">\n  <div className="nui-card-body">\n    <h2>Modern UI</h2>\n    <p>Powered by Tailwind v4</p>\n  </div>\n</div>`
                                     )}
                                 </div>
                             </motion.div>
@@ -169,36 +171,36 @@ const Documentation = () => {
                     {/* Sidebar Stats / Info */}
                     <div className="space-y-8">
                         <div className="bg-muted/30 border border-border/50 rounded-[32px] p-8">
-                            <h3 className="text-sm font-black uppercase tracking-widest opacity-40 mb-6">Package Stats</h3>
+                            <h3 className="text-sm font-black uppercase tracking-widest opacity-40 mb-6">Package Details</h3>
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm font-bold flex items-center gap-2">
-                                        <Cpu className="w-4 h-4 text-primary" /> Size
+                                        <Cpu className="w-4 h-4 text-primary" /> Version
                                     </span>
-                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-md font-black">~42KB</span>
+                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-md font-black">v1.0.2</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm font-bold flex items-center gap-2">
-                                        <Code2 className="w-4 h-4 text-primary" /> Deps
+                                        <Zap className="w-4 h-4 text-primary" /> Build
                                     </span>
-                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-md font-black">Zero</span>
+                                    <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-md font-black">Vite v6+</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm font-bold flex items-center gap-2">
-                                        <Globe className="w-4 h-4 text-primary" /> RTL
+                                        <Shield className="w-4 h-4 text-primary" /> Engine
                                     </span>
-                                    <span className="text-xs bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded-md font-black">Native</span>
+                                    <span className="text-xs bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded-md font-black">TW v4</span>
                                 </div>
                             </div>
                         </div>
 
                         <div className="bg-primary/5 border border-primary/10 rounded-[32px] p-8">
-                            <h3 className="text-lg font-black mb-4">Need Help?</h3>
+                            <h3 className="text-lg font-black mb-4">View on NPM</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                                Join our community of Bangladeshi developers building modern apps.
+                                Check the package details, download stats, and more on the official NPM registry.
                             </p>
-                            <a href="https://github.com/supto707/noorui-bangladesh-ui.git" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary text-primary-content font-bold hover:scale-[1.02] transition-transform">
-                                <Github className="w-4 h-4" /> Open Issue
+                            <a href="https://www.npmjs.com/package/@supto_noorui/noorui-bangladesh-ui" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[#CB3837] text-white font-bold hover:scale-[1.02] transition-transform shadow-lg shadow-[#CB3837]/20">
+                                <PackageIcon className="w-4 h-4" /> Go to NPM
                             </a>
                         </div>
                     </div>

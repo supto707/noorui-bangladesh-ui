@@ -1,6 +1,6 @@
 {
     "name": "@supto_noorui/noorui-bangladesh-ui",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "NoorUI – Lightweight Tailwind CSS UI framework for Bangladeshi and Islamic web apps. 12 themes, 25+ components, RTL-ready, accessible.",
     "main": "dist/index.js",
     "module": "dist/index.js",
