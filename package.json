@@ -1,7 +1,11 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "noorui-official-docs",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supto707/noorui-bangladesh-ui.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

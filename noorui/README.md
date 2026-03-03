@@ -10,70 +10,75 @@ A lightweight, standalone, production-ready UI framework designed for Bangladesh
 - **12 Semantic Themes**: `islamic-green`, `ramadan`, `dhaka-night`, `rangpur`, `sylhet`, and more.
 - **High Performance**: PostCSS-based Tailwind plugin for maximum optimization.
 
-## 🚀 Quick Start
+## 🚀 Step-by-Step Setup
 
-### 1. Installation
+### 1. Install the package
 
 ```bash
 npm install @supto_noorui/noorui-bangladesh-ui
 ```
 
-### 2. Configuration
+### 2. Framework Configuration
 
-Add NoorUI to your `tailwind.config.ts` or `tailwind.config.js`:
+#### Vite (React)
+
+Add to your `tailwind.config.ts` (or `.js`):
 
 ```javascript
-/** @type {import('tailwindcss').Config} */
 import noorui from "@supto_noorui/noorui-bangladesh-ui";
 
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
   plugins: [
     noorui({
-      themes: ["islamic-green", "ramadan", "dark"], // Optional: specifying themes
-      prefix: "nui-", // Optional: component prefix
+      themes: ["islamic-green", "ramadan", "dark"],
+      prefix: "nui-",
     }),
   ],
 }
 ```
 
-## 🧩 Component Examples
+#### Next.js (App Router)
+
+Update your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from "tailwindcss";
+import noorui from "@supto_noorui/noorui-bangladesh-ui";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  plugins: [noorui],
+};
+export default config;
+```
+
+### 3. Start Using Components
 
 NoorUI provides a set of semantic classes that prefix with `nui-` (by default).
 
-### Buttons
-
 ```html
+<!-- Button -->
 <button class="nui-btn nui-btn-primary">Bismillah</button>
-<button class="nui-btn nui-btn-outline">Outline</button>
-<button class="nui-btn nui-btn-ghost">Ghost</button>
-```
 
-### Cards
-
-```html
+<!-- Card -->
 <div class="nui-card">
   <div class="nui-card-body">
     <h3 class="font-bold text-lg">Assalamu Alaikum</h3>
     <p>This is a standalone NoorUI card component.</p>
-    <div class="nui-card-actions mt-4">
-      <button class="nui-btn nui-btn-primary nui-btn-sm">Confirm</button>
-    </div>
   </div>
 </div>
 ```
 
-## 🎨 Themes
+## 🎨 Theming
 
-Apply themes using the `data-theme` attribute on any parent element (usually `<html>`):
+Apply themes using the `data-theme` attribute on your `<html>` or any parent element:
 
 ```html
 <html data-theme="islamic-green">
-  <!-- Content here -->
-</html>
 ```
 
 **Available Themes:** `light`, `dark`, `cupcake`, `islamic-green`, `ramadan`, `hijri`, `dhaka-night`, `rangpur`, `sylhet`, `chittagong`, `coxsbazar`, `sundarban`.

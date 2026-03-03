@@ -1,63 +1,55 @@
-# RangpurUI - Bangladesh's Delightful UI
+# NoorUI – Bangladesh's Delightful UI (Official Docs)
 
-A lightweight, high-performance UI framework for modern web development, with a focus on Islamic and Bangladeshi cultural aesthetics.
+A lightweight, high-performance UI framework for modern web development, with a focus on Islamic and Bangladeshi cultural aesthetics. This repository contains the official documentation site.
 
-## Features
-- **Semantic Theming**: 12 custom themes.
-- **RTL Ready**: Built-in support for Arabic/Persian/Urdu.
-- **Accessible**: ARIA-compliant components.
-- **Lightweight**: Optimized for performance.
+## 🚀 Getting Started with Docs
 
-## Getting Started
-
-### Local Development
-If you want to work locally, clone this repo and run:
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run this documentation project locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# 1. Clone the repository
 git clone https://github.com/supto707/noorui-bangladesh-ui.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# 2. Navigate to the project directory
+cd noorui-bangladesh-ui
 
-# Step 3: Install the necessary dependencies.
-npm i
+# 3. Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🛠 Using NoorUI in Your Projects
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+If you want to use the **NoorUI** framework in your own application:
 
-**Use GitHub Codespaces**
+### 1. Installation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm install @supto_noorui/noorui-bangladesh-ui
+```
 
-## What technologies are used for this project?
+### 2. Configuration (Tailwind)
 
-This project is built with:
+Add NoorUI to your `tailwind.config.ts`:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```typescript
+import noorui from "@supto_noorui/noorui-bangladesh-ui";
 
-## Deployment
+export default {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  plugins: [noorui],
+}
+```
 
-You can deploy this project to any static hosting service like Netlify, Vercel, or GitHub Pages.
+## ✨ Core Features
 
-1. Run `npm run build` to create a production bundle.
-2. Upload the `dist` folder to your hosting provider.
+- **Semantic Theming**: 12 custom themes like `islamic-green` and `ramadan`.
+- **RTL Ready**: Native support for Arabic/Persian/Urdu script logical properties.
+- **Accessible**: Built to follow modern accessibility standards.
+- **Lightweight**: Pure PostCSS plugin — zero heavy JS runtimes.
+
+## ⚖️ License
+
+MIT © [NoorUI Contributors](https://github.com/supto707/noorui-bangladesh-ui.git)
