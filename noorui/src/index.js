@@ -18,6 +18,10 @@ import dropdown from './components/dropdown.js';
 const nooruui = plugin.withOptions(
     function (options = {}) {
         return function ({ addBase, addComponents, addUtilities }) {
+            // 0. Sanitize Prefix (Future-proofing, components currently use hardcoded .nui-)
+            let prefix = options.prefix || 'nui-';
+            if (prefix && !prefix.endsWith('-')) prefix += '-';
+
             // 1. Inject theme CSS variables
             const themeStyles = getBaseStyles(options);
             addBase(themeStyles);

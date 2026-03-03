@@ -269,7 +269,18 @@ function themeVars(name) {
 }
 
 function getBaseStyles(options = {}) {
-    const include = options.themes || Object.keys(themes);
+    let include = options.themes;
+
+    // Handle comma-separated strings from Tailwind v4 CSS blocks
+    if (typeof include === 'string') {
+        include = include.split(',').map(s => s.trim()).filter(Boolean);
+    }
+
+    // Default to all themes if not specified or empty
+    if (!include || include.length === 0) {
+        include = Object.keys(themes);
+    }
+
     const defaultTheme = options.defaultTheme || 'light';
     const darkTheme = options.darkTheme || 'dark';
 
